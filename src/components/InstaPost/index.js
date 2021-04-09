@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+{/*import styled from "styled-components";
 
 const ImgContainer = styled.div`
   left: 0;
@@ -85,23 +85,11 @@ const TitleText = styled.h1`
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 150px;
-`;
+  `;*/}
 
 const InstaPost = ({ title, topic, image, scale }) => {
   return (
-    <ImgContainer scale={scale}>
-      <MainImg src={image} alt="Укажите ссылку на картинку"></MainImg>
-      <MainLogo
-        src="https://i.postimg.cc/KvZ8g2pk/logo.png"
-        alt="Дентис"
-      ></MainLogo>
-      <TopicWrapper>
-        <TopicText>{topic}</TopicText>
-      </TopicWrapper>
-      <TitleWrapper>
-        <TitleText>{title}</TitleText>
-      </TitleWrapper>
-    </ImgContainer>
+    <></>
   );
 };
 
