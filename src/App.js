@@ -38,46 +38,6 @@ function App() {
     console.log("Loading image...");
   }, [imgURL]);
 
-  const drawImageProp = (ctx, img, x, y, w, h, offsetX, offsetY) => {
-    if (arguments.length === 2) {
-      x = y = 0;
-      w = 1920;
-      h = 1920;
-    }
-
-    offsetX = typeof offsetX === "number" ? offsetX : 0.5;
-    offsetY = typeof offsetY === "number" ? offsetY : 0.5;
-
-    var iw = img.width,
-      ih = img.height,
-      r = Math.min(w / iw, h / ih),
-      nw = iw * r,
-      nh = ih * r,
-      cx,
-      cy,
-      cw,
-      ch,
-      ar = 1;
-
-    if (nw < w) ar = w / nw;
-    if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
-    nw *= ar;
-    nh *= ar;
-
-    cw = iw / (nw / w);
-    ch = ih / (nh / h);
-
-    cx = (iw - cw) * offsetX;
-    cy = (ih - ch) * offsetY;
-
-    if (cx < 0) cx = 0;
-    if (cy < 0) cy = 0;
-    if (cw > iw) cw = iw;
-    if (ch > ih) ch = ih;
-
-    ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
-  };
-
   const textWrap = (text) => {
     const ctx = canvasRef.current.getContext("2d");
     var maxWidth = 1820;
@@ -157,6 +117,46 @@ function App() {
   };
 
   useEffect(() => {
+    const drawImageProp = (ctx, img, x, y, w, h, offsetX, offsetY) => {
+      if (arguments.length === 2) {
+        x = y = 0;
+        w = 1920;
+        h = 1920;
+      }
+
+      offsetX = typeof offsetX === "number" ? offsetX : 0.5;
+      offsetY = typeof offsetY === "number" ? offsetY : 0.5;
+
+      var iw = img.width,
+        ih = img.height,
+        r = Math.min(w / iw, h / ih),
+        nw = iw * r,
+        nh = ih * r,
+        cx,
+        cy,
+        cw,
+        ch,
+        ar = 1;
+
+      if (nw < w) ar = w / nw;
+      if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
+      nw *= ar;
+      nh *= ar;
+
+      cw = iw / (nw / w);
+      ch = ih / (nh / h);
+
+      cx = (iw - cw) * offsetX;
+      cy = (ih - ch) * offsetY;
+
+      if (cx < 0) cx = 0;
+      if (cy < 0) cy = 0;
+      if (cw > iw) cw = iw;
+      if (ch > ih) ch = ih;
+
+      ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
+    };
+
     if (image && canvasRef) {
       const ctx = canvasRef.current.getContext("2d");
 
