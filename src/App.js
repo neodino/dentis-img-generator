@@ -16,7 +16,7 @@ function App() {
     var image = canvasRef.current.toDataURL("image/jpg");
     var downloadLink = document.createElement("a");
     downloadLink.href = image;
-    downloadLink.download = "Dentis.jpg";
+    downloadLink.download = "dentis";
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -217,7 +217,13 @@ function App() {
   return (
     <Container maxW="4xl" py="6">
       <Box boxShadow="2xl" rounded="xl" p="6" bg="white">
-        <Input type={"file"} mb="3" border={"none"} onChange={imageHandler} />
+        <Input
+          type={"file"}
+          mb="3"
+          border={"none"}
+          onChange={imageHandler}
+          accept="image/jpeg"
+        />
         <Input
           placeholder="Заголовок"
           mb="3"
