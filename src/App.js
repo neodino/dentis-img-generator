@@ -1,6 +1,6 @@
 import { Container, Box, Input, Button, Center } from "@chakra-ui/react";
 import React, { useState, useRef, useEffect } from "react";
-import { FiDownload } from 'react-icons/fi'
+import { FiDownload } from "react-icons/fi";
 
 function App() {
   const canvasRef = useRef(null);
@@ -13,24 +13,32 @@ function App() {
   // setting image
   const [imgURL, setImgURL] = useState(null);
 
+  const [prevLocation, setPrevLocation] = useState(null);
+  const downloadCanvas = () => {
+    setPrevLocation(window.location.href);
+    window.location.href = canvasRef.current
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
+    window.location.href = prevLocation;
+  };
+
   const [logo, setLogo] = useState(null);
   useEffect(() => {
     const logoObj = new Image();
-    logoObj.src = 'https://i.postimg.cc/KvZ8g2pk/logo.png';
-    logoObj.onload = () => setLogo(logoObj)
-  }, [])
+    logoObj.src = "https://i.postimg.cc/KvZ8g2pk/logo.png";
+    logoObj.onload = () => setLogo(logoObj);
+  }, []);
 
   const [image, setImage] = useState(null);
+
   useEffect(() => {
     const imageObj = new Image();
     imageObj.src = imgURL;
     imageObj.onload = () => setImage(imageObj);
-    console.log('Loading image...')
-  }, [imgURL])
-
+    console.log("Loading image...");
+  }, [imgURL]);
 
   const drawImageProp = (ctx, img, x, y, w, h, offsetX, offsetY) => {
-
     if (arguments.length === 2) {
       x = y = 0;
       w = 1920;
@@ -45,7 +53,11 @@ function App() {
       r = Math.min(w / iw, h / ih),
       nw = iw * r,
       nh = ih * r,
-      cx, cy, cw, ch, ar = 1;
+      cx,
+      cy,
+      cw,
+      ch,
+      ar = 1;
 
     if (nw < w) ar = w / nw;
     if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;
@@ -64,43 +76,68 @@ function App() {
     if (ch > ih) ch = ih;
 
     ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
-  }
+  };
 
-  var lines = [];
   const textWrap = (text) => {
-    const ctx = canvasRef.current.getContext('2d')
+    const ctx = canvasRef.current.getContext("2d");
     var maxWidth = 1820;
-
-    var width = 0, i, j;
+    var lines = [];
+    var width = 0,
+      i,
+      j;
     var result;
-    var fontSize = 110
-    ctx.fillStyle = 'white'
-    ctx.font = fontSize + 'px Open Sans'
-    ctx.textAlign = 'center'
+    var fontSize = 110;
+    ctx.font = fontSize + "px Open Sans";
+    ctx.textAlign = "center";
 
     while (text.length) {
-      for (i = text.length; ctx.measureText(text.substr(0, i)).width > maxWidth; i--);
+      for (
+        i = text.length;
+        ctx.measureText(text.substr(0, i)).width > maxWidth;
+        i--
+      );
 
       result = text.substr(0, i);
 
       if (i !== text.length)
-        for (j = 0; result.indexOf(" ", j) !== -1; j = result.indexOf(" ", j) + 1);
+        for (
+          j = 0;
+          result.indexOf(" ", j) !== -1;
+          j = result.indexOf(" ", j) + 1
+        );
 
       lines.unshift(result.substr(0, j || result.length));
       width = Math.max(width, ctx.measureText(lines[lines.length - 1]).width);
       text = text.substr(lines[lines.length - 1].length, text.length);
     }
 
-    var lineStart = 1840
+    var gradient = ctx.createLinearGradient(
+      960,
+      1920,
+      960,
+      1920 - (400 + 110 * lines.length)
+    );
+    gradient.addColorStop(0, "rgba(7, 155, 215, 1)");
+    gradient.addColorStop(0.25, "rgba(7, 155, 215, 1)");
+    gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(
+      0,
+      1920 - (400 + 110 * lines.length),
+      1920,
+      400 + 110 * lines.length
+    );
+
+    ctx.fillStyle = "white";
+    var lineStart = 1840;
     for (i = 0; i < lines.length; i++) {
-      lineStart = lineStart - (fontSize + 5) * i
+      lineStart = lineStart - (fontSize + 5) * i;
       ctx.fillText(lines[i], 960, lineStart);
     }
-
-  }
+  };
 
   const roundRect = (x0, y0, x1, y1, r, color) => {
-    const ctx = canvasRef.current.getContext('2d')
+    const ctx = canvasRef.current.getContext("2d");
     var w = x1 - x0;
     var h = y1 - y0;
     if (r > w / 2) r = w / 2;
@@ -117,38 +154,28 @@ function App() {
     ctx.closePath();
     ctx.fillStyle = color;
     ctx.fill();
-  }
+  };
 
   useEffect(() => {
     if (image && canvasRef) {
-      const ctx = canvasRef.current.getContext('2d')
+      const ctx = canvasRef.current.getContext("2d");
 
-      ctx.font = '60px Open Sans'
-      var txtW = ctx.measureText(topic).width + 100
+      ctx.font = "60px Open Sans";
+      var txtW = ctx.measureText(topic).width + 100;
 
       drawImageProp(ctx, image);
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
       ctx.shadowBlur = 80;
       ctx.drawImage(logo, 1614, 70);
-      roundRect(-57, 123, txtW + 5, 227, 57, 'white')
-      ctx.shadowColor = 'rgba(0, 0, 0, 0)';
-      roundRect(-52, 128, txtW, 222, 52, '#079bd7')
-      ctx.textAlign = 'left'
-      ctx.fillStyle = 'white'
-      ctx.fillText(topic, 50, 195)
-
-      var gradient = ctx.createLinearGradient(960, 1920, 960, 1920 - (200 + (115) * lines.length));
-      gradient.addColorStop(0, 'rgba(7, 155, 215, 1)');
-      gradient.addColorStop(.25, 'rgba(7, 155, 215, 1)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 1920 - (200 + (115) * lines.length), 1920, (200 + (115) * lines.length));
-
-      textWrap(title)
+      roundRect(-57, 123, txtW + 5, 227, 57, "white");
+      ctx.shadowColor = "rgba(0, 0, 0, 0)";
+      roundRect(-52, 128, txtW, 222, 52, "#079bd7");
+      ctx.textAlign = "left";
+      ctx.fillStyle = "white";
+      ctx.fillText(topic, 50, 195);
+      textWrap(title);
     }
-
-    console.log('Loading canvas...')
-  }, [image, canvasRef, topic, logo, title])
+  }, [image, canvasRef, topic, logo, title]);
 
   const [squareWidth, setSquareWidth] = useState(0);
   const [containerScale, setContainerScale] = useState(0);
@@ -170,19 +197,27 @@ function App() {
   }, [squareWidth]);
 
   const styles = {
-    transformOrigin: '0 0',
-    transform: 'scale(' + containerScale + ')'
-  }
+    transformOrigin: "0 0",
+    transform: "scale(" + containerScale + ")",
+  };
 
   return (
     <Container maxW="4xl" py="6">
       <Box boxShadow="2xl" rounded="xl" p="6" bg="white">
-        <Input placeholder="Ссылка на картинку" mb="3" onChange={e =>
-          setImgURL(e.target.value)} />
-        <Input placeholder="Заголовок" mb="3" onChange={e =>
-          setTitle(e.target.value.toUpperCase())} />
-        <Input placeholder="Тема" onChange={e =>
-          setTopic(e.target.value.toUpperCase())} />
+        <Input
+          placeholder="Ссылка на картинку"
+          mb="3"
+          onChange={(e) => setImgURL(e.target.value)}
+        />
+        <Input
+          placeholder="Заголовок"
+          mb="3"
+          onChange={(e) => setTitle(e.target.value.toUpperCase())}
+        />
+        <Input
+          placeholder="Тема"
+          onChange={(e) => setTopic(e.target.value.toUpperCase())}
+        />
       </Box>
       <Box boxShadow="2xl" rounded="xl" p="6" bg="white" mt="6">
         <Box
@@ -192,16 +227,17 @@ function App() {
           boxShadow="outline"
           ref={widthRef}
         >
-          <canvas
-            width={1920}
-            height={1920}
-            ref={canvasRef}
-            style={styles}
-          />
+          <canvas width={1920} height={1920} ref={canvasRef} style={styles} />
         </Box>
       </Box>
       <Center mt="6">
-        <Button leftIcon={<FiDownload />} colorScheme="red">Сохранить</Button>
+        <Button
+          onClick={downloadCanvas}
+          leftIcon={<FiDownload />}
+          colorScheme="red"
+        >
+          Сохранить
+        </Button>
       </Center>
     </Container>
   );
