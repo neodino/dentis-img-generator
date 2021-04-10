@@ -1,6 +1,7 @@
 import { Container, Box, Input, Button, Center } from "@chakra-ui/react";
 import React, { useState, useRef, useEffect } from "react";
 import { FiDownload } from "react-icons/fi";
+import logoDentis from "../src/images/logo.png";
 
 function App() {
   const canvasRef = useRef(null);
@@ -10,34 +11,46 @@ function App() {
   const [title, setTitle] = useState("ЗАГОЛОВОК");
   // changing topic
   const [topic, setTopic] = useState("ТЕМА");
-  // setting image
-  const [imgURL, setImgURL] = useState(null);
 
-  const [prevLocation, setPrevLocation] = useState(null);
   const downloadCanvas = () => {
-    setPrevLocation(window.location.href);
-    window.location.href = canvasRef.current
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
-    window.location.href = prevLocation;
+    var image = canvasRef.current.toDataURL("image/jpg");
+    var downloadLink = document.createElement("a");
+    downloadLink.href = image;
+    downloadLink.download = "Dentis.jpg";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   };
 
   const [logo, setLogo] = useState(null);
   useEffect(() => {
     const logoObj = new Image();
-    logoObj.src = "https://i.postimg.cc/KvZ8g2pk/logo.png";
+    logoObj.src = logoDentis;
     logoObj.onload = () => setLogo(logoObj);
   }, []);
 
   const [image, setImage] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
+
+  const imageHandler = (e) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImageURL(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
 
   useEffect(() => {
     const imageObj = new Image();
-    imageObj.src = imgURL;
+    imageObj.src = imageURL;
+    const ctx = canvasRef.current.getContext("2d");
+    ctx.clearRect(0, 0, ctx.width, ctx.height);
     imageObj.onload = () => setImage(imageObj);
-    console.log("Loading image...");
-  }, [imgURL]);
+  }, [imageURL]);
 
+  // function for wrapping title text
   const textWrap = (text) => {
     const ctx = canvasRef.current.getContext("2d");
     var maxWidth = 1820;
@@ -95,7 +108,7 @@ function App() {
       ctx.fillText(lines[i], 960, lineStart);
     }
   };
-
+  // function for creating rounded rect on canvas
   const roundRect = (x0, y0, x1, y1, r, color) => {
     const ctx = canvasRef.current.getContext("2d");
     var w = x1 - x0;
@@ -204,11 +217,7 @@ function App() {
   return (
     <Container maxW="4xl" py="6">
       <Box boxShadow="2xl" rounded="xl" p="6" bg="white">
-        <Input
-          placeholder="Ссылка на картинку"
-          mb="3"
-          onChange={(e) => setImgURL(e.target.value)}
-        />
+        <Input type={"file"} mb="3" border={"none"} onChange={imageHandler} />
         <Input
           placeholder="Заголовок"
           mb="3"
