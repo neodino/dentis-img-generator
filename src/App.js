@@ -6,14 +6,14 @@ import {
   Route
 } from "react-router-dom";
 import HomePagePlaceHolder from "./components/HomePagePlaceholder";
-import InputController from "./components/InputController";
+import TypeController from "./components/TypeController";
 import Article from "./pages/InstaPost/article";
 
 function App() {
   return (
     <Router>
       <Container as={Stack} spacing={3} maxW='4xl' p={6}>
-        <InputController />
+        <TypeController />
         <Switch>
           <Route exact path='/'>
             <HomePagePlaceHolder />

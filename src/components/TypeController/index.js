@@ -2,7 +2,7 @@ import { Stack, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import ImageTypeSelector from './ImageTypeSelector';
 
-const InputController = () => {
+const TypeController = () => {
     return (
         <Stack
             spacing={3}
@@ -15,4 +15,4 @@ const InputController = () => {
     );
 };
 
-export default InputController;
+export default TypeController;
