@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import HomePagePlaceHolder from "./components/HomePagePlaceholder";
 import InputController from "./components/InputController";
+import Article from "./pages/InstaPost/article";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             <HomePagePlaceHolder />
           </Route>
           <Route exact path='/article'>
-            <h1>Статья</h1>
+            <Article />
           </Route>
           <Route exact path='/before-after'>
             <h1>До / После</h1>
