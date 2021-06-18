@@ -13,7 +13,7 @@ const ImageTypeSelector = () => {
                         Шаблон изображения
                     </MenuButton>
                     <MenuList>
-                        <MenuItem as={Link} to='/'>Статья</MenuItem>
+                        <MenuItem as={Link} to='/article'>Статья</MenuItem>
                         <MenuItem as={Link} to='/before-after'>До / После</MenuItem>
                         <MenuItem as={Link} to='/promotion'>Акции и скидки</MenuItem>
                     </MenuList>

@@ -1,19 +1,23 @@
-import { Container } from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+import HomePagePlaceHolder from "./components/HomePagePlaceholder";
 import InputController from "./components/InputController";
 
 function App() {
   return (
     <Router>
-      <Container maxW='4xl' p={6}>
+      <Container as={Stack} spacing={3} maxW='4xl' p={6}>
         <InputController />
         <Switch>
           <Route exact path='/'>
+            <HomePagePlaceHolder />
+          </Route>
+          <Route exact path='/article'>
             <h1>Статья</h1>
           </Route>
           <Route exact path='/before-after'>
