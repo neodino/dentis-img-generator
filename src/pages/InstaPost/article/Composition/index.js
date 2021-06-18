@@ -1,8 +1,8 @@
-import { AspectRatio, Box, Center, Image, Text } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import Logo from '../../../../img/logo.png';
 
-const Composition = ({ title, topic }) => {
+const Composition = ({ title, topic, image }) => {
     return (
         <Box
             pos='relative'
@@ -18,10 +18,19 @@ const Composition = ({ title, topic }) => {
                 position='absolute'
                 width='241px'
                 height='241px'
-                webkitFilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
+                webkitfilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 zIndex={2} />
-            <AspectRatio
+            {image === '' && <Center
+                left={0}
+                right={0}
+                bottom={0}
+                top={0}
+                position='absolute'
+                zIndex={1}>
+                <Heading as='h3' color='gray' fontSize='60px'>Вставьте ссылку на изображение или выберите файл</Heading>
+            </Center>}
+            {image !== '' && <AspectRatio
                 ratio={1}
                 objectFit='cover'
                 left={0}
@@ -32,8 +41,8 @@ const Composition = ({ title, topic }) => {
                 zIndex={1}>
                 <Image
                     alt='background'
-                    src='https://place-hold.it/1920x1080' />
-            </AspectRatio>
+                    src={image} />
+            </AspectRatio>}
             <Box
                 left={0}
                 top='123px'
@@ -44,7 +53,7 @@ const Composition = ({ title, topic }) => {
                 border='5px white solid'
                 borderLeftWidth={0}
                 borderRightRadius='52px'
-                webkitFilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
+                webkitfilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 px='50px'>
                 <Text
