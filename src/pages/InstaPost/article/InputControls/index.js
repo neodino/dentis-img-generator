@@ -47,7 +47,7 @@ const InputControls = ({ title, setTitle, topic, setTopic, handleImageLoad, imag
                                     justifyContent='flex-start'
                                     pl={4}
                                     isTruncated
-                                    children={fileURL ? document.getElementById('fileInput').value.replace(/.*[\/\\]/, '') : 'Файл не выбран'} />
+                                    children={fileURL ? document.getElementById('fileInput').value.replace(/.*[\\]/, '') : 'Файл не выбран'} />
                                 <Input
                                     overflow='hidden'
                                     pt='36px'
