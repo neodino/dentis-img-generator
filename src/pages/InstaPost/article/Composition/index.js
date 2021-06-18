@@ -21,8 +21,6 @@ const Composition = ({ title, topic, image, scale }) => {
                 position='absolute'
                 width='241px'
                 height='241px'
-                webkitfilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
-                filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 zIndex={2} />
             {image === '' && <Center
                 left={0}
@@ -56,8 +54,6 @@ const Composition = ({ title, topic, image, scale }) => {
                 border='white solid'
                 borderWidth='5px'
                 borderRadius='100px'
-                webkitfilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
-                filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 px='50px'>
                 <Text
                     pl='50px'
