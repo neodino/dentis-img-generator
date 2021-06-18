@@ -11,6 +11,7 @@ const Composition = ({ title, topic, image, scale }) => {
             bg='white'
             zIndex={0}
             transformOrigin='0 0'
+            id='composition'
             transform={'scale(' + scale + ')'}>
             <Image
                 alt='logo'
@@ -46,19 +47,20 @@ const Composition = ({ title, topic, image, scale }) => {
                     src={image} />
             </AspectRatio>}
             <Box
-                left={0}
+                left='-50px'
                 top='123px'
                 pos='absolute'
                 zIndex={2}
                 bg='#079bd7'
                 h='104px'
-                border='5px white solid'
-                borderLeftWidth={0}
-                borderRightRadius='52px'
+                border='white solid'
+                borderWidth='5px'
+                borderRadius='100px'
                 webkitfilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
                 px='50px'>
                 <Text
+                    pl='50px'
                     fontSize='60px'
                     fontWeight='bold'
                     textTransform='uppercase'>
