@@ -1,8 +1,12 @@
+import { Container } from "@chakra-ui/react";
 import React from "react";
+import InputController from "./components/InputController";
 
 function App() {
   return (
-    <h1>Hello World</h1>
+    <Container maxW='4xl' p={6}>
+      <InputController />
+    </Container>
   );
 }
 
