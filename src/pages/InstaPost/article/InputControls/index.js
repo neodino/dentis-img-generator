@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, Tabs, TabList, TabPanels, Tab, TabPanel, Box, InputLeftElement } from '@chakra-ui/react';
 import React from 'react';
 import { MdClose } from 'react-icons/md';
 
@@ -39,9 +39,19 @@ const InputControls = ({ title, setTitle, topic, setTopic, handleImageLoad, imag
                     </TabPanel>
                     <TabPanel padding={0}>
                         <FormControl>
-                            <FormLabel>Выберите файл изображения</FormLabel>
+                            <FormLabel as={Box}>Выберите файл изображения</FormLabel>
                             <InputGroup>
+                                <InputLeftElement
+                                    pointerEvents='none'
+                                    width='100% !important'
+                                    justifyContent='flex-start'
+                                    pl={4}
+                                    isTruncated
+                                    children={fileURL ? document.getElementById('fileInput').value.replace(/.*[\/\\]/, '') : 'Файл не выбран'} />
                                 <Input
+                                    overflow='hidden'
+                                    pt='36px'
+                                    boxSizing='border-box'
                                     type='file'
                                     variant='filled'
                                     id='fileInput'
