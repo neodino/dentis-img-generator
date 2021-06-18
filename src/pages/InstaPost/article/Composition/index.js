@@ -69,7 +69,6 @@ const Composition = ({ title, topic, image, scale }) => {
                 left={0}
                 right={0}
                 bottom={0}
-                px='50px'
                 pb='50px'
                 pt='320px'
                 pos='absolute'
