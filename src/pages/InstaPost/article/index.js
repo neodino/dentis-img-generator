@@ -1,79 +1,48 @@
-import { AspectRatio, Box, Center, Image, Text } from '@chakra-ui/react';
-import React from 'react';
-import Logo from '../../../img/logo.png';
+import { Stack } from '@chakra-ui/layout';
+import { FormControl, FormLabel, IconButton, Input, InputGroup, InputRightElement, useColorModeValue } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { MdClose } from 'react-icons/md';
+import Composition from './Composition';
 
 const Article = () => {
+
+    const [title, setTitle] = useState('');
+    const [topic, setTopic] = useState('');
+
     return (
-        <Box
-            pos='relative'
-            width='1920px'
-            height='1920px'
-            bg='white'
-            zIndex={0}>
-            <Image
-                alt='logo'
-                src={Logo}
-                left='1614px'
-                top='70px'
-                position='absolute'
-                width='241px'
-                height='241px'
-                webkitFilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
-                filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
-                zIndex={2} />
-            <AspectRatio
-                ratio={1}
-                objectFit='cover'
-                left={0}
-                right={0}
-                bottom={0}
-                top={0}
-                position='absolute'
-                zIndex={1}>
-                <Image
-                    alt='background'
-                    src='https://place-hold.it/1920x1080' />
-            </AspectRatio>
-            <Box
-                left={0}
-                top='123px'
-                pos='absolute'
-                zIndex={2}
-                bg='#079bd7'
-                h='104px'
-                border='5px white solid'
-                borderLeftWidth={0}
-                borderRightRadius='52px'
-                webkitFilter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
-                filter='drop-shadow(0 0 25px rgba(0,0,0,0.4))'
-                px='50px'>
-                <Text
-                    fontSize='60px'
-                    fontWeight='bold'
-                    textTransform='uppercase'>
-                    Шаблон
-                </Text>
-            </Box>
-            <Center
-                left={0}
-                right={0}
-                bottom={0}
-                pb='50px'
-                pt='320px'
-                pos='absolute'
-                zIndex={2}
-                bgGradient="linear(to-t, rgba(7, 155, 215, 1), rgba(255, 255, 255, 0))"
-            >
-                <Text
-                    lineHeight={1}
-                    fontSize='134px'
-                    textAlign='center'
-                    fontWeight='bold'
-                    textTransform='uppercase'>
-                    ПРОФЕССИОНАЛЬНАЯ ЧИСТКА - ЗДОРОВЫЕ ЗУБЫ
-                </Text>
-            </Center>
-        </Box>
+        <Stack
+            spacing={3}
+            p={3}
+            rounded='xl'
+            bg={useColorModeValue('white', 'gray.700')}
+        >
+            <FormControl>
+                <FormLabel>Заголовок статьи</FormLabel>
+                <InputGroup>
+                    <Input variant='filled' value={title} placeholder='Введите текст...' onChange={e => setTitle(e.target.value)} />
+                    {title !== '' && <InputRightElement
+                        children={<IconButton
+                            variant='ghost'
+                            colorScheme='red'
+                            icon={<MdClose />}
+                            onClick={() => setTitle('')}></IconButton>} />}
+                </InputGroup>
+            </FormControl>
+            <FormControl>
+                <FormLabel>Тема статьи</FormLabel>
+                <InputGroup>
+                    <Input variant='filled' value={topic} placeholder='Введите текст...' onChange={e => setTopic(e.target.value)}></Input>
+                    {topic !== '' && <InputRightElement
+                        children={<IconButton
+                            variant='ghost'
+                            colorScheme='red'
+                            icon={<MdClose />}
+                            onClick={() => setTopic('')}></IconButton>} />}
+                </InputGroup>
+            </FormControl>
+
+            <Composition title={title} topic={topic} />
+        </Stack>
     );
 };
 
