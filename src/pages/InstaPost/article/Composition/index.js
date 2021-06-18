@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Center, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import Logo from '../../../../img/logo.png';
 
@@ -8,7 +8,8 @@ const Composition = ({ title, topic, image, scale }) => {
             pos='relative'
             width='1920px'
             height='1920px'
-            bg='white'
+            bg={image ? ('url(' + image + ')') : 'white'}
+            bgSize='cover'
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
@@ -31,19 +32,6 @@ const Composition = ({ title, topic, image, scale }) => {
                 zIndex={1}>
                 <Heading as='h3' color='gray' fontSize='60px'>Вставьте ссылку на изображение или выберите файл</Heading>
             </Center>}
-            {image !== '' && <AspectRatio
-                ratio={1}
-                objectFit='cover'
-                left={0}
-                right={0}
-                bottom={0}
-                top={0}
-                position='absolute'
-                zIndex={1}>
-                <Image
-                    alt='background'
-                    src={image} />
-            </AspectRatio>}
             <Box
                 left='-50px'
                 top='123px'
