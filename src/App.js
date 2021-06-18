@@ -12,7 +12,7 @@ import Article from "./pages/InstaPost/article";
 function App() {
   return (
     <Router>
-      <Container as={Stack} spacing={3} maxW='4xl' p={6}>
+      <Container as={Stack} spacing={3} maxW='4xl' py={6} px={3}>
         <TypeController />
         <Switch>
           <Route exact path='/'>

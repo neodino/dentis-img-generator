@@ -54,7 +54,7 @@ const Article = () => {
                 fileURL={fileURL}
                 setFileURL={setFileURL}
                 setImageURL={handleImageURLChange} />
-            <Box w='full' h={height} ref={containerRef}>
+            <Box w='full' h={height} overflow='hidden' ref={containerRef}>
                 <Composition scale={scale} title={title} topic={topic} image={(imageURL === '' && fileURL === '') ? '' : (imageURL === '' && fileURL !== '') ? fileURL : imageURL} />
             </Box>
         </Stack>
