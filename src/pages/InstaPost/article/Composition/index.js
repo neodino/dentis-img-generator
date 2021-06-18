@@ -2,14 +2,16 @@ import { AspectRatio, Box, Center, Heading, Image, Text } from '@chakra-ui/react
 import React from 'react';
 import Logo from '../../../../img/logo.png';
 
-const Composition = ({ title, topic, image }) => {
+const Composition = ({ title, topic, image, scale }) => {
     return (
         <Box
             pos='relative'
             width='1920px'
             height='1920px'
             bg='white'
-            zIndex={0}>
+            zIndex={0}
+            transformOrigin='0 0'
+            transform={'scale(' + scale + ')'}>
             <Image
                 alt='logo'
                 src={Logo}

@@ -1,6 +1,7 @@
 import { Stack } from '@chakra-ui/layout';
-import { useColorModeValue } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
+import React, { useRef, useState } from 'react';
+import useCompositionResize from '../../../hooks/useCompositionResize';
 import Composition from './Composition';
 import InputControls from './InputControls';
 
@@ -10,6 +11,8 @@ const Article = () => {
     const [topic, setTopic] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [fileURL, setFileURL] = useState('');
+
+    const containerRef = useRef(null);
 
     const handleImageLoad = (e) => {
         if (e.target.files.length > 0) {
@@ -32,6 +35,8 @@ const Article = () => {
         document.getElementById('fileInput').value = '';
     };
 
+    const { scale, height } = useCompositionResize(containerRef);
+
     return (
         <Stack
             spacing={3}
@@ -49,7 +54,9 @@ const Article = () => {
                 fileURL={fileURL}
                 setFileURL={setFileURL}
                 setImageURL={handleImageURLChange} />
-            <Composition title={title} topic={topic} image={(imageURL === '' && fileURL === '') ? '' : (imageURL === '' && fileURL !== '') ? fileURL : imageURL} />
+            <Box w='full' h={height} ref={containerRef}>
+                <Composition scale={scale} title={title} topic={topic} image={(imageURL === '' && fileURL === '') ? '' : (imageURL === '' && fileURL !== '') ? fileURL : imageURL} />
+            </Box>
         </Stack>
     );
 };
