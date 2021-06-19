@@ -8,6 +8,7 @@ import {
 import HomePagePlaceHolder from "./components/HomePagePlaceholder";
 import TypeController from "./components/TypeController";
 import Article from "./pages/InstaPost/Article";
+import BeforeAfter from "./pages/InstaPost/BeforeAfter";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <Article />
           </Route>
           <Route exact path='/before-after'>
-            <h1>До / После</h1>
+            <BeforeAfter />
           </Route>
           <Route exact path='/promotion'>
             <h1>Акции и скидки</h1>

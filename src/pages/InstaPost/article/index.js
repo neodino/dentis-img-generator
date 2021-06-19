@@ -8,7 +8,7 @@ import { FiDownload } from "react-icons/fi";
 import InputTypeFile from '../../../components/InputTypeFile';
 import useCanvasRender from '../../../hooks/useCanvasRender';
 import RenderSpinner from '../../../components/RenderSpinner';
-import ImageSettings from './ImageSettings';
+import ImageSettings from '../../../components/ImageSettings';
 
 const Article = () => {
 

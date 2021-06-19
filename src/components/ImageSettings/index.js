@@ -7,7 +7,7 @@ import {
     AccordionIcon,
     Box
 } from "@chakra-ui/react";
-import PosXPosYSliders from '../../../../components/PosXPosYSliders';
+import PosXPosYSliders from '../PosXPosYSliders';
 
 const ImageSettings = ({ posX, posY, bgScale, setPosX, setPosY, setBgScale }) => {
     return (
