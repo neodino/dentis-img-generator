@@ -23,6 +23,7 @@ const Article = () => {
 
     const [posX, setPosX] = useState(50);
     const [posY, setPosY] = useState(50);
+    const [bgScale, setBgScale] = useState(100);
 
     return (
         <Stack
@@ -39,9 +40,16 @@ const Article = () => {
                 topic={topic}
                 setTitle={setTitle}
                 setTopic={setTopic} />
-            {fileURL !== '' && <ImageSettings posX={posX} setPosX={setPosX} posY={posY} setPosY={setPosY} />}
+            {fileURL !== '' && <ImageSettings
+                posX={posX}
+                setPosX={setPosX}
+                posY={posY}
+                setPosY={setPosY}
+                setBgScale={setBgScale}
+                bgScale={bgScale} />}
             <Box w='full' h={height} overflow='hidden' ref={containerRef}>
                 <Composition
+                    bgScale={bgScale}
                     scale={isRendering ? 1 : scale}
                     title={title} topic={topic}
                     image={fileURL ? fileURL : ''}

@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import PosXPosYSliders from '../../../../components/PosXPosYSliders';
 
-const ImageSettings = ({ posX, posY, setPosX, setPosY }) => {
+const ImageSettings = ({ posX, posY, bgScale, setPosX, setPosY, setBgScale }) => {
     return (
         <Accordion allowToggle>
             <AccordionItem>
@@ -22,7 +22,13 @@ const ImageSettings = ({ posX, posY, setPosX, setPosY }) => {
                     </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                    <PosXPosYSliders posX={posX} posY={posY} setPosX={setPosX} setPosY={setPosY} />
+                    <PosXPosYSliders
+                        posX={posX}
+                        posY={posY}
+                        setPosX={setPosX}
+                        setPosY={setPosY}
+                        setBgScale={setBgScale}
+                        bgScale={bgScale} />
                 </AccordionPanel>
             </AccordionItem>
         </Accordion>

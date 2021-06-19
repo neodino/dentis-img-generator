@@ -1,56 +1,57 @@
 import React from 'react';
 import {
-    Box,
-    Slider,
-    SliderTrack,
-    SliderFilledTrack,
-    SliderThumb,
+    Center,
+    Grid,
+    GridItem,
+    IconButton,
     Stack,
 } from "@chakra-ui/react";
+import { AiOutlineZoomIn, AiOutlineZoomOut, AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp } from 'react-icons/ai';
+import { MdCenterFocusStrong, MdZoomOutMap } from 'react-icons/md';
 
-const PosXPosYSliders = ({ posX, posY, setPosX, setPosY }) => {
+const PosXPosYSliders = ({ posX, posY, setPosX, setPosY, bgScale, setBgScale }) => {
+
+    const handlePosReset = () => {
+        setPosX(50);
+        setPosY(50);
+    };
+
     return (
-        <Stack spacing={6}>
-            <Box flex="1" textAlign="left" fontWeight='semibold'>
-                Горизонтальная позиция
-            </Box>
-            <Stack direction='row'>
-                <Box>
-                    0%
-                </Box>
-                <Slider defaultValue={50} min={0} max={100} step={5} colorScheme='blue' onChange={(val) => setPosX(val)}>
-                    <SliderTrack>
-                        <Box position="relative" right={10} />
-                        <SliderFilledTrack />
-                    </SliderTrack>
-                    <SliderThumb boxSize={9} color='black'>
-                        {posX}
-                    </SliderThumb>
-                </Slider>
-                <Box>
-                    100%
-                </Box>
-            </Stack>
-            <Box flex="1" textAlign="left" fontWeight='semibold'>
-                Вертикальная позиция
-            </Box>
-            <Stack direction='row'>
-                <Box>
-                    0%
-                </Box>
-                <Slider defaultValue={50} min={0} max={100} step={5} colorScheme='blue' onChange={(val) => setPosY(val)}>
-                    <SliderTrack>
-                        <Box position="relative" right={10} />
-                        <SliderFilledTrack />
-                    </SliderTrack>
-                    <SliderThumb boxSize={9} color='black'>
-                        {posY}
-                    </SliderThumb>
-                </Slider>
-                <Box>
-                    100%
-                </Box>
-            </Stack>
+        <Stack spacing={6} direction='row'>
+            <Center w='50%' flexDir='column' fontWeight='semibold' textAlign='center'>
+                Позиция изображения
+                <Grid mt={6} templateRows='repeat(3, 1fr)' templateColumns='repeat(3, 1fr)' w='min' gridGap={2}>
+                    <GridItem colStart={1} rowStart={2}>
+                        <IconButton onClick={() => setPosX(posX - 10)} icon={<AiOutlineArrowLeft />} />
+                    </GridItem>
+                    <GridItem colStart={2} rowStart={1}>
+                        <IconButton onClick={() => setPosY(posY + 10)} icon={<AiOutlineArrowUp />} />
+                    </GridItem>
+                    <GridItem colStart={2} rowStart={2}>
+                        <IconButton onClick={() => handlePosReset()} icon={<MdCenterFocusStrong />} />
+                    </GridItem>
+                    <GridItem colStart={3} rowStart={2}>
+                        <IconButton onClick={() => setPosX(posX + 10)} icon={<AiOutlineArrowRight />} />
+                    </GridItem>
+                    <GridItem colStart={2} rowStart={3}>
+                        <IconButton onClick={() => setPosY(posY - 10)} icon={<AiOutlineArrowDown />} />
+                    </GridItem>
+                </Grid>
+            </Center>
+            <Center w='50%' flexDir='column' fontWeight='semibold' textAlign='center'>
+                Масштаб изображения
+                <Grid mt={6} templateRows='repeat(3, 1fr)' templateColumns='repeat(1, 1fr)' w='min' gridGap={2}>
+                    <GridItem colStart={1} rowStart={1}>
+                        <IconButton onClick={() => setBgScale(bgScale + 10)} icon={<AiOutlineZoomIn />} />
+                    </GridItem>
+                    <GridItem colStart={1} rowStart={2}>
+                        <IconButton onClick={() => setBgScale(100)} icon={<MdZoomOutMap />} />
+                    </GridItem>
+                    <GridItem colStart={1} rowStart={3}>
+                        <IconButton onClick={() => setBgScale(bgScale - 10)} icon={<AiOutlineZoomOut />} />
+                    </GridItem>
+                </Grid>
+            </Center>
         </Stack>
     );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { IoIosImages } from 'react-icons/io';
 import Logo from '../../../../img/logo.png';
 
-const Composition = ({ title, topic, image, scale, posX, posY }) => {
+const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
     return (
         <Box
             pos='relative'
@@ -11,7 +11,7 @@ const Composition = ({ title, topic, image, scale, posX, posY }) => {
             height='1920px'
             bg={image ? ('url(' + image + ')') : 'white'}
             bgPos={posX + '% ' + posY + '%'}
-            bgSize='cover'
+            bgSize={bgScale !== 'cover' ? (bgScale + '%') : bgScale}
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
