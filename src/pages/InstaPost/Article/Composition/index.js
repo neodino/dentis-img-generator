@@ -1,4 +1,4 @@
-import { Box, Center, Heading, Image, Text } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { IoIosImages } from 'react-icons/io';
 import Logo from '../../../../img/logo.png';
@@ -9,9 +9,10 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
             pos='relative'
             width='1920px'
             height='1920px'
-            bg={image ? ('url(' + image + ')') : 'white'}
-            bgPos={posX + '% ' + posY + '%'}
-            bgSize={bgScale !== 'cover' ? (bgScale + '%') : bgScale}
+            bg='white'
+            // bg={image ? ('url(' + image + ')') : 'white'}
+            // bgPos={posX + '% ' + posY + '%'}
+            // bgSize={bgScale !== 'cover' ? (bgScale + '%') : bgScale}
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
@@ -25,7 +26,21 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
                 position='absolute'
                 width='241px'
                 height='241px'
-                zIndex={2} />
+                zIndex={3} />
+            <Box
+                overflow='hidden'
+                width='1920px'
+                height='1920px'
+                position='relative'>
+                <Image
+                    pos='absolute'
+                    transform={'scale(' + bgScale + ')'}
+                    left={posX + 'px'} top={posY + 'px'}
+                    w='full' h='auto'
+                    alt='background'
+                    src={image}
+                    zIndex={1} />
+            </Box>
             {image === '' && <Center
                 flexDirection='column'
                 left={0}

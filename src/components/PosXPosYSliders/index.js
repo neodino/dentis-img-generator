@@ -12,8 +12,8 @@ import { MdCenterFocusStrong, MdZoomOutMap } from 'react-icons/md';
 const PosXPosYSliders = ({ posX, posY, setPosX, setPosY, bgScale, setBgScale }) => {
 
     const handlePosReset = () => {
-        setPosX(50);
-        setPosY(50);
+        setPosX(0);
+        setPosY(0);
     };
 
     return (
@@ -22,19 +22,19 @@ const PosXPosYSliders = ({ posX, posY, setPosX, setPosY, bgScale, setBgScale }) 
                 Позиция изображения
                 <Grid mt={6} templateRows='repeat(3, 1fr)' templateColumns='repeat(3, 1fr)' w='min' gridGap={2}>
                     <GridItem colStart={1} rowStart={2}>
-                        <IconButton onClick={() => setPosX(posX - 10)} icon={<AiOutlineArrowLeft />} />
+                        <IconButton onClick={() => setPosX(posX - 30)} icon={<AiOutlineArrowLeft />} />
                     </GridItem>
                     <GridItem colStart={2} rowStart={1}>
-                        <IconButton onClick={() => setPosY(posY + 10)} icon={<AiOutlineArrowUp />} />
+                        <IconButton onClick={() => setPosY(posY - 30)} icon={<AiOutlineArrowUp />} />
                     </GridItem>
                     <GridItem colStart={2} rowStart={2}>
                         <IconButton onClick={() => handlePosReset()} icon={<MdCenterFocusStrong />} />
                     </GridItem>
                     <GridItem colStart={3} rowStart={2}>
-                        <IconButton onClick={() => setPosX(posX + 10)} icon={<AiOutlineArrowRight />} />
+                        <IconButton onClick={() => setPosX(posX + 30)} icon={<AiOutlineArrowRight />} />
                     </GridItem>
                     <GridItem colStart={2} rowStart={3}>
-                        <IconButton onClick={() => setPosY(posY - 10)} icon={<AiOutlineArrowDown />} />
+                        <IconButton onClick={() => setPosY(posY + 30)} icon={<AiOutlineArrowDown />} />
                     </GridItem>
                 </Grid>
             </Center>
@@ -42,13 +42,13 @@ const PosXPosYSliders = ({ posX, posY, setPosX, setPosY, bgScale, setBgScale }) 
                 Масштаб изображения
                 <Grid mt={6} templateRows='repeat(3, 1fr)' templateColumns='repeat(1, 1fr)' w='min' gridGap={2}>
                     <GridItem colStart={1} rowStart={1}>
-                        <IconButton onClick={() => setBgScale(bgScale + 10)} icon={<AiOutlineZoomIn />} />
+                        <IconButton onClick={() => setBgScale(bgScale + 0.1)} icon={<AiOutlineZoomIn />} />
                     </GridItem>
                     <GridItem colStart={1} rowStart={2}>
-                        <IconButton onClick={() => setBgScale(100)} icon={<MdZoomOutMap />} />
+                        <IconButton onClick={() => setBgScale(1)} icon={<MdZoomOutMap />} />
                     </GridItem>
                     <GridItem colStart={1} rowStart={3}>
-                        <IconButton onClick={() => setBgScale(bgScale - 10)} icon={<AiOutlineZoomOut />} />
+                        <IconButton onClick={() => setBgScale(bgScale - 0.1)} icon={<AiOutlineZoomOut />} />
                     </GridItem>
                 </Grid>
             </Center>

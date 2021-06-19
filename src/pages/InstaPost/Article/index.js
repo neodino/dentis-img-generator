@@ -21,9 +21,9 @@ const Article = () => {
     const { scale, height } = useCompositionResize(containerRef);
     const { handleRender, isRendering } = useCanvasRender();
 
-    const [posX, setPosX] = useState(50);
-    const [posY, setPosY] = useState(50);
-    const [bgScale, setBgScale] = useState(100);
+    const [posX, setPosX] = useState(0);
+    const [posY, setPosY] = useState(0);
+    const [bgScale, setBgScale] = useState(1);
 
     return (
         <Stack
