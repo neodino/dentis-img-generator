@@ -45,7 +45,8 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
                 bottom={0}
                 top={0}
                 position='absolute'
-                zIndex={1}>
+                zIndex={1}
+                bg='white'>
                 <IoIosImages color='gray' fontSize='120px' />
                 <Heading as='h3' color='gray' fontSize='60px'>Выберите файл изображения</Heading>
             </Center>}
