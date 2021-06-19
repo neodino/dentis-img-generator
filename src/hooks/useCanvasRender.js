@@ -14,7 +14,9 @@ const useCanvasRender = () => {
             {
                 width: w,
                 height: h,
-                scale: 1
+                scale: 1,
+                allowTaint: true,
+                useCORS: true
             }
         ).then(function (canvas) {
             setIsRendering(false);

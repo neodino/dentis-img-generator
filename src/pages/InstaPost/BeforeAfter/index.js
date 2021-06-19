@@ -15,12 +15,12 @@ const BeforeAfter = () => {
 
     const [imageBefore, setImageBefore] = useState('');
     const [imageAfter, setImageAfter] = useState('');
-    const [bgBeforeScale, setBgBeforeScale] = useState(100);
-    const [bgAfterScale, setBgAfterScale] = useState(100);
-    const [posXBefore, setPosXBefore] = useState(50);
-    const [posYBefore, setPosYBefore] = useState(50);
-    const [posXAfter, setPosXAfter] = useState(50);
-    const [posYAfter, setPosYAfter] = useState(50);
+    const [bgBeforeScale, setBgBeforeScale] = useState(1);
+    const [bgAfterScale, setBgAfterScale] = useState(1);
+    const [posXBefore, setPosXBefore] = useState(0);
+    const [posYBefore, setPosYBefore] = useState(0);
+    const [posXAfter, setPosXAfter] = useState(0);
+    const [posYAfter, setPosYAfter] = useState(0);
 
     const { handleRender, isRendering } = useCanvasRender();
 

@@ -25,16 +25,22 @@ const Composition = ({
             transform={'scale(' + scale + ')'}
             color='white'>
             <Box
-                position='absolute'
+                overflow='hidden'
+                position='relative'
                 left={0}
                 top={0}
                 right={0}
                 h='973px'
                 border='25px white solid'
-                zIndex={2}
-                bg={imageBefore ? ('url(' + imageBefore + ')') : 'white'}
-                bgPos={posXBefore + '% ' + posYBefore + '%'}
-                bgSize={bgBeforeScale !== 'cover' ? (bgBeforeScale + '%') : bgBeforeScale}>
+                zIndex={2}>
+                <Image
+                    pos='absolute'
+                    transform={'scale(' + bgBeforeScale + ')'}
+                    left={posXBefore + 'px'} top={posYBefore + 'px'}
+                    w='full' h='auto'
+                    alt='background'
+                    src={imageBefore}
+                    zIndex={1} />
             </Box>
             {imageBefore === '' && <Center
                 flexDirection='column'
@@ -43,21 +49,28 @@ const Composition = ({
                 h='973px'
                 top={0}
                 position='absolute'
-                zIndex={2}>
+                zIndex={2}
+                bg='white'>
                 <IoIosImages color='gray' fontSize='120px' />
                 <Heading as='h3' color='gray' fontSize='60px'>Выберите файл изображения</Heading>
             </Center>}
             <Box
+                overflow='hidden'
                 position='absolute'
                 left={0}
                 bottom={0}
                 right={0}
                 h='973px'
                 border='25px white solid'
-                zIndex={2}
-                bg={imageAfter ? ('url(' + imageAfter + ')') : 'white'}
-                bgPos={posXAfter + '% ' + posYAfter + '%'}
-                bgSize={bgAfterScale !== 'cover' ? (bgAfterScale + '%') : bgAfterScale}>
+                zIndex={2}>
+                <Image
+                    pos='absolute'
+                    transform={'scale(' + bgAfterScale + ')'}
+                    left={posXAfter + 'px'} top={posYAfter + 'px'}
+                    w='full' h='auto'
+                    alt='background'
+                    src={imageAfter}
+                    zIndex={1} />
             </Box>
             {imageAfter === '' && <Center
                 flexDirection='column'
@@ -66,7 +79,8 @@ const Composition = ({
                 h='973px'
                 bottom={0}
                 position='absolute'
-                zIndex={2}>
+                zIndex={2}
+                bg='white'>
                 <IoIosImages color='gray' fontSize='120px' />
                 <Heading as='h3' color='gray' fontSize='60px'>Выберите файл изображения</Heading>
             </Center>}

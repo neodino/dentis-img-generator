@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Center, Heading, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Heading, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import { IoIosImages } from 'react-icons/io';
 import Logo from '../../../../img/logo.png';
@@ -9,10 +9,7 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
             pos='relative'
             width='1920px'
             height='1920px'
-            bg='white'
-            // bg={image ? ('url(' + image + ')') : 'white'}
-            // bgPos={posX + '% ' + posY + '%'}
-            // bgSize={bgScale !== 'cover' ? (bgScale + '%') : bgScale}
+            bg='white' s
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
