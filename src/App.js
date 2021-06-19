@@ -5,6 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HomePagePlaceHolder from "./components/HomePagePlaceholder";
 import TypeController from "./components/TypeController";
@@ -14,7 +15,7 @@ import BeforeAfter from "./pages/InstaPost/BeforeAfter";
 function App() {
   return (
     <Router>
-      <Container as={Stack} spacing={3} maxW='4xl' py={6} px={3}>
+      <Container as={Stack} spacing={3} maxW='4xl' py={6} px={3} minH='100vh' height='100%'>
         <Header />
         <TypeController />
         <Switch>
@@ -31,6 +32,7 @@ function App() {
             <h1>Акции и скидки</h1>
           </Route>
         </Switch>
+        <Footer />
       </Container>
     </Router>
   );
