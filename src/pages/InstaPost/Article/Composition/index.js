@@ -26,8 +26,8 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
                 zIndex={3} />
             <Box
                 overflow='hidden'
-                width='1920px'
-                height='1920px'
+                width='full'
+                height='full'
                 position='relative'>
                 <Image
                     pos='absolute'
