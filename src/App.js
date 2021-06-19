@@ -5,6 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import Header from "./components/Header";
 import HomePagePlaceHolder from "./components/HomePagePlaceholder";
 import TypeController from "./components/TypeController";
 import Article from "./pages/InstaPost/Article";
@@ -14,6 +15,7 @@ function App() {
   return (
     <Router>
       <Container as={Stack} spacing={3} maxW='4xl' py={6} px={3}>
+        <Header />
         <TypeController />
         <Switch>
           <Route exact path='/'>

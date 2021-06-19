@@ -15,7 +15,8 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
-            transform={'scale(' + scale + ')'}>
+            transform={'scale(' + scale + ')'}
+            color='white'>
             <Image
                 alt='logo'
                 src={Logo}

@@ -22,7 +22,8 @@ const Composition = ({
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
-            transform={'scale(' + scale + ')'}>
+            transform={'scale(' + scale + ')'}
+            color='white'>
             <Box
                 position='absolute'
                 left={0}

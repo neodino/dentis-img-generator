@@ -30,7 +30,7 @@ const Article = () => {
             spacing={3}
             p={3}
             rounded='xl'
-            bg={useColorModeValue('white', 'gray.700')}
+            bg={useColorModeValue('gray.300', 'gray.700')}
         >
             <InputTypeFile
                 fileURL={fileURL}
