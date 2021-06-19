@@ -16,15 +16,15 @@ const useCanvasRender = () => {
                 height: h,
                 scale: 1
             }
-        ).then(function (canvas) {
-            setIsRendering(false);
-            var image = canvas.toDataURL("image/jpg");
+        ).then((canvas) => {
+            let date = new Date();
+            var image = document.body.appendChild(canvas);
             var downloadLink = document.createElement("a");
-            downloadLink.href = image;
-            downloadLink.download = "dentis";
-            document.body.appendChild(downloadLink);
+            downloadLink.href = image.toDataURL("image/jpg");
+            downloadLink.download = "dentis" + date.toLocaleDateString();
             downloadLink.click();
-            document.body.removeChild(downloadLink);
+            document.body.removeChild(canvas);
+            setIsRendering(false);
         });
     };
 
