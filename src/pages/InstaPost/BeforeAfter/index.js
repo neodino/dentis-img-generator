@@ -75,7 +75,7 @@ const BeforeAfter = () => {
                     posXAfter={posXAfter}
                     posYAfter={posYAfter} />
             </Box>
-            <Button leftIcon={<FiDownload />} colorScheme='blue' onClick={() => handleRender(1920, 1920)}>Сохранить</Button>
+            {(imageBefore !== '' && imageAfter !== '') && <Button leftIcon={<FiDownload />} colorScheme='blue' onClick={() => handleRender(1920, 1920)}>Сохранить</Button>}
             <RenderSpinner isRendering={isRendering} />
         </Stack>
     );
