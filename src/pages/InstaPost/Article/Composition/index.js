@@ -9,7 +9,7 @@ const Composition = ({ title, topic, image, scale, posX, posY, bgScale }) => {
             pos='relative'
             width='1920px'
             height='1920px'
-            bg='white' s
+            bg='white'
             zIndex={0}
             transformOrigin='0 0'
             id='composition'
