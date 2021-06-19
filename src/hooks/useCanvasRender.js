@@ -19,14 +19,15 @@ const useCanvasRender = () => {
                 useCORS: true
             }
         ).then(function (canvas) {
-            setIsRendering(false);
             var image = canvas.toDataURL("image/jpg");
+            var date = new Date();
+
             var downloadLink = document.createElement("a");
             downloadLink.href = image;
-            downloadLink.download = "dentis";
-            document.body.appendChild(downloadLink);
+            downloadLink.download = "dentis" + date.toLocaleDateString();
             downloadLink.click();
-            document.body.removeChild(downloadLink);
+
+            setIsRendering(false);
         });
     };
 
