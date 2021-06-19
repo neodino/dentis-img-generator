@@ -8,7 +8,6 @@ const useCanvasRender = () => {
     const handleRender = async (w, h) => {
         setIsRendering(true);
         window.scrollTo(0, 0);
-        document.body.style.overflow = "hidden";
         const composition = document.getElementById('composition');
         await delay(1000);
         html2canvas(composition,
@@ -18,7 +17,6 @@ const useCanvasRender = () => {
                 scale: 1
             }
         ).then(function (canvas) {
-            document.body.style.overflow = "auto";
             setIsRendering(false);
             var image = canvas.toDataURL("image/jpg");
             var downloadLink = document.createElement("a");

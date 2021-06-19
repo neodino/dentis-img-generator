@@ -7,6 +7,7 @@ import InputControls from './InputControls';
 import { FiDownload } from "react-icons/fi";
 import InputTypeFile from '../../../components/InputTypeFile';
 import useCanvasRender from '../../../hooks/useCanvasRender';
+import RenderSpinner from '../../../components/RenderSpinner';
 
 const Article = () => {
 
@@ -38,6 +39,7 @@ const Article = () => {
                 <Composition scale={isRendering ? 1 : scale} title={title} topic={topic} image={fileURL ? fileURL : ''} />
             </Box>
             <Button leftIcon={<FiDownload />} colorScheme='blue' onClick={() => handleRender(1920, 1920)}>Сохранить</Button>
+            <RenderSpinner isRendering={isRendering} />
         </Stack>
     );
 };

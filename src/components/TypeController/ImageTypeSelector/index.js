@@ -12,7 +12,7 @@ const ImageTypeSelector = () => {
                     <MenuButton textAlign='left' isActive={isOpen} as={Button} rightIcon={isOpen ? <FaChevronUp /> : <FaChevronDown />}>
                         Шаблон изображения
                     </MenuButton>
-                    <MenuList>
+                    <MenuList zIndex='banner'>
                         <MenuOptionGroup title="Посты" type="radio">
                             <MenuDivider />
                             <MenuItem as={Link} to='/article'>Статья</MenuItem>
