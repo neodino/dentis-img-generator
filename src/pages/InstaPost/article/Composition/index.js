@@ -3,13 +3,14 @@ import React from 'react';
 import { IoIosImages } from 'react-icons/io';
 import Logo from '../../../../img/logo.png';
 
-const Composition = ({ title, topic, image, scale }) => {
+const Composition = ({ title, topic, image, scale, posX, posY }) => {
     return (
         <Box
             pos='relative'
             width='1920px'
             height='1920px'
             bg={image ? ('url(' + image + ')') : 'white'}
+            bgPos={posX + '% ' + posY + '%'}
             bgSize='cover'
             zIndex={0}
             transformOrigin='0 0'

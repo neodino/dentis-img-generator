@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import HomePagePlaceHolder from "./components/HomePagePlaceholder";
 import TypeController from "./components/TypeController";
-import Article from "./pages/InstaPost/article";
+import Article from "./pages/InstaPost/Article";
 
 function App() {
   return (

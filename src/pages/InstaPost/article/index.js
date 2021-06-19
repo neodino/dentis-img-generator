@@ -8,6 +8,7 @@ import { FiDownload } from "react-icons/fi";
 import InputTypeFile from '../../../components/InputTypeFile';
 import useCanvasRender from '../../../hooks/useCanvasRender';
 import RenderSpinner from '../../../components/RenderSpinner';
+import ImageSettings from './ImageSettings';
 
 const Article = () => {
 
@@ -19,6 +20,9 @@ const Article = () => {
 
     const { scale, height } = useCompositionResize(containerRef);
     const { handleRender, isRendering } = useCanvasRender();
+
+    const [posX, setPosX] = useState(50);
+    const [posY, setPosY] = useState(50);
 
     return (
         <Stack
@@ -35,10 +39,16 @@ const Article = () => {
                 topic={topic}
                 setTitle={setTitle}
                 setTopic={setTopic} />
+            {fileURL !== '' && <ImageSettings posX={posX} setPosX={setPosX} posY={posY} setPosY={setPosY} />}
             <Box w='full' h={height} overflow='hidden' ref={containerRef}>
-                <Composition scale={isRendering ? 1 : scale} title={title} topic={topic} image={fileURL ? fileURL : ''} />
+                <Composition
+                    scale={isRendering ? 1 : scale}
+                    title={title} topic={topic}
+                    image={fileURL ? fileURL : ''}
+                    posX={posX}
+                    posY={posY} />
             </Box>
-            <Button leftIcon={<FiDownload />} colorScheme='blue' onClick={() => handleRender(1920, 1920)}>Сохранить</Button>
+            {fileURL !== '' && <Button leftIcon={<FiDownload />} colorScheme='blue' onClick={() => handleRender(1920, 1920)}>Сохранить</Button>}
             <RenderSpinner isRendering={isRendering} />
         </Stack>
     );
